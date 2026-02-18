@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -7,7 +7,7 @@ using namespace std;
 
 const string ERRORCOUNTINPUT = "Неверное количество входных данных";
 const string ERROROTHERSYMBOLS = "Присутствуют посторонние символы, помимо цифр";
-const string ERRORRANGENUMBER = "Число не входит в диапазон: 0 - 255";
+const string ERRORRANGENUMBER = "Число больше 255";
 const string VALIDSYMBOLS = "0123456789";
 
 
@@ -67,13 +67,13 @@ bool CheckOnCorrectInput(int argc, char* argv[])
 		return false;
 	}
 	string number = argv[1];
-	if (number.find_first_of(VALIDSYMBOLS) == string::npos)
+	if (number.find_first_not_of(VALIDSYMBOLS) != string::npos)
 	{
 		cout << ERROROTHERSYMBOLS << endl;
 		return false;
 	}
 	int check_number = stoi(argv[1]);
-	if ((0 <= check_number <= 255) == false)
+	if (check_number > 255)
 	{
 		cout << ERRORRANGENUMBER << endl;
 		return false;
