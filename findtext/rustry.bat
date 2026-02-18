@@ -1,6 +1,6 @@
 @echo off
 chcp 1251 > nul
-echo Тест 1
+echo РўРµСЃС‚ 1
 echo first line > tests1.txt
 echo second line with good word >> tests1.txt
 echo third line >> tests1.txt
@@ -8,51 +8,54 @@ echo third line >> tests1.txt
 oop_1.exe tests1.txt good
 
 if %errorlevel% equ 0 (
-    echo +++ Тест пройден: текст найден
+    echo +++ РўРµСЃС‚ РїСЂРѕР№РґРµРЅ: С‚РµРєСЃС‚ РЅР°Р№РґРµРЅ
 ) else (
-    echo --- Тест не пройден: ожидалось, что текст найден
+    echo --- РўРµСЃС‚ РЅРµ РїСЂРѕР№РґРµРЅ: РѕР¶РёРґР°Р»РѕСЃСЊ, С‡С‚Рѕ С‚РµРєСЃС‚ РЅР°Р№РґРµРЅ
 )
 
-echo Тест 2
+echo РўРµСЃС‚ 2
 oop_1.exe tests1.txt line
 if %errorlevel% equ 0 (
-    echo +++ Тест пройден: текст найден
+    echo +++ РўРµСЃС‚ РїСЂРѕР№РґРµРЅ: С‚РµРєСЃС‚ РЅР°Р№РґРµРЅ
 ) else (
-    echo --- Тест не пройден
+    echo --- РўРµСЃС‚ РЅРµ РїСЂРѕР№РґРµРЅ
 )
 
-echo Тест 3
+echo РўРµСЃС‚ 3
 oop_1.exe tests1.txt privetww
 if %errorlevel% equ 0 (
-    echo --- Тест не пройден: текст найден
+    echo --- РўРµСЃС‚ РЅРµ РїСЂРѕР№РґРµРЅ: С‚РµРєСЃС‚ РЅР°Р№РґРµРЅ
 ) else (
-    echo +++ Тест пройден
+    echo +++ РўРµСЃС‚ РїСЂРѕР№РґРµРЅ
 )
 
-echo Тест 4
+echo РўРµСЃС‚ 4
 
 echo first line > tests1.txt
-echo квартира >> tests1.txt
+echo РєРІР°СЂС‚РёСЂР° >> tests1.txt
 echo third line >> tests1.txt
 
-oop_1.exe tests1.txt квартира
+oop_1.exe tests1.txt РєРІР°СЂС‚РёСЂР°
 if %errorlevel% equ 0 (
-    echo +++ Тест пройден: текст найден
+    echo +++ РўРµСЃС‚ РїСЂРѕР№РґРµРЅ: С‚РµРєСЃС‚ РЅР°Р№РґРµРЅ
 ) else (
-    echo --- Тест не пройден
+    echo --- РўРµСЃС‚ РЅРµ РїСЂРѕР№РґРµРЅ
 )
 
 echo first line > tests1.txt
-echo квартира дом >> tests1.txt
+echo РєРІР°СЂС‚РёСЂР° РґРѕРј >> tests1.txt
 echo third line >> tests1.txt
 
-echo Тест 5
-oop_1.exe tests1.txt "квартира дом"
+echo РўРµСЃС‚ 5
+oop_1.exe tests1.txt "РєРІР°СЂС‚РёСЂР° РґРѕРј"
 if %errorlevel% equ 0 (
-    echo +++ Тест пройден: текст найден
+    echo +++ РўРµСЃС‚ РїСЂРѕР№РґРµРЅ: С‚РµРєСЃС‚ РЅР°Р№РґРµРЅ
 ) else (
-    echo --- Тест не пройден
+    echo --- РўРµСЃС‚ РЅРµ РїСЂРѕР№РґРµРЅ
 )
 
-echo Тест 6
+echo РўРµСЃС‚ 6
+
 oop_1.exe er.txt empty
+
+pause
