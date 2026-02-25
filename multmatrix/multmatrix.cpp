@@ -2,7 +2,7 @@
 #include <string>
 #include <array>
 #include <fstream>
-
+#include <iomanip>
 
 using namespace std;
 
@@ -50,6 +50,9 @@ void multiplyMatrices(const float A[3][3], const float B[3][3], float C[3][3]) {
 
 void PrintMatrix(float matrix[3][3])
 {
+
+    cout << fixed << setprecision(3);
+    
     for (int i = 0; i < 3; i++)
     {
         cout << "\n";
@@ -140,4 +143,5 @@ int main(int argc, char* argv[])
 
     return 0;
 }
+
 
