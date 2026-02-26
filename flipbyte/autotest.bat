@@ -33,4 +33,12 @@ if errorlevel 1 (
     echo Найден ожидаемый вывод
 )
 
+
+echo Тест 5
+flipbyte.exe | find "Неверное количество входных данных"
+if errorlevel 1 (
+    echo Ошибка не найдена, тест не пройден
+) else (
+    echo Ошибка  найдена, тест пройден
+)
 pause
