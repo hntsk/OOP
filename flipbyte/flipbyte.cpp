@@ -1,95 +1,57 @@
 ﻿#include <iostream>
 #include <string>
-#include <vector>
-#include <algorithm>
+
 
 using namespace std;
 
-const string ERRORCOUNTINPUT = "Неверное количество входных данных";
-const string ERROROTHERSYMBOLS = "Присутствуют посторонние символы, помимо цифр";
-const string ERRORRANGENUMBER = "Число больше 255";
-const string VALIDSYMBOLS = "0123456789";
+
+const string ERROR_COUNT = "Неверное количество входных данных";
+const string ERROR_SYMBOLS = "Присутствуют посторонние символы";
+const string ERROR_RANGE = "Число должно быть в диапазоне от 0 до 255";
 
 
-string Bin2Dec(string number)
-{
-	int int_result = 0;
-	string result;
-	for (int i = 0; i < number.size(); i++)
-	{
-		int_result = ((int_result) << 1) | (number[i] - '0');
-	}
-	result = to_string(int_result);
-	result.erase(0, result.find_first_not_of('0'));
-	if (result == "")
-	{
-		result = "0";
-	}
-	return result;
+unsigned char flipbyte(unsigned char n) {
+    unsigned char result = 0;
+    for (int i = 0; i < 8; i++) {
+        result <<= 1;
+        result |= (n & 1);
+        n >>= 1;
+    }
+    return result;
 }
 
+bool isValid(int argc, char* argv[], int& outNumber) {
+    if (argc != 2) {
+        cerr << ERROR_COUNT << endl;
+        return false;
+    }
 
+    string s = argv[1];
+    if (s.empty() || s.find_first_not_of("0123456789") != string::npos) {
+        cerr << ERROR_SYMBOLS << endl;
+        return false;
+    }
 
-string Dec2Bin(string number)
-{
-	string remains = "";
-	int divisible = stoi(number);
-	while (divisible != 0)
-	{
-		remains = to_string(divisible % 2) + remains;
-		divisible = divisible / 2;
-	}
-	remains.insert(0, 8 - remains.length(), '0');
-	return remains;
+    long temp = stol(s);
+    if (temp < 0 || temp > 255) {
+        cerr << ERROR_RANGE << endl;
+        return false;
+    }
+
+    outNumber = (int)temp;
+    return true;
 }
 
+int main(int argc, char* argv[]) {
+    int number;
+    if (!isValid(argc, argv, number)) {
+        return 1;
+    }
 
-string Reverse(string number)
-{
-	reverse(number.begin(), number.end());
-	return number;
-}
+    unsigned char input = static_cast<unsigned char>(number);
+    unsigned char output = flipbyte(input);
 
-string flipbyte(string number)
-{
-	number = Dec2Bin(number);
-	number = Reverse(number);
-	number = Bin2Dec(number);
-	return number;
-}
+    cout << static_cast<int>(output) << endl;
 
-
-bool CheckOnCorrectInput(int argc, char* argv[])
-{
-	if (argc == 1 or argc > 2)
-	{
-		cout << ERRORCOUNTINPUT << endl;
-		return false;
-	}
-	string number = argv[1];
-	if (number.find_first_not_of(VALIDSYMBOLS) != string::npos)
-	{
-		cout << ERROROTHERSYMBOLS << endl;
-		return false;
-	}
-	int check_number = stoi(argv[1]);
-	if (check_number > 255)
-	{
-		cout << ERRORRANGENUMBER << endl;
-		return false;
-	}
-	return true;
-}
-
-
-int main(int argc, char* argv[])
-{
-	if (CheckOnCorrectInput(argc, argv) == false)
-	{
-		return false;
-	}
-	string number;
-	number = argv[1];
-	cout << flipbyte(number);
-	return 0;
+    return 0;
 }
